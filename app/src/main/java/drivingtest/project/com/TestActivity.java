@@ -5,7 +5,7 @@ import android.os.CountDownTimer;
 import android.util.Log;
 
 import drivingtest.project.com.base.MyTextView;
-import drivingtest.project.com.database.BaseActivity;
+import drivingtest.project.com.base.BaseActivity;
 import drivingtest.project.com.database.MyDatabase;
 import drivingtest.project.com.model.Category;
 
