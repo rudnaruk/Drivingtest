@@ -1,0 +1,45 @@
+package drivingtest.project.com.database;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import drivingtest.project.com.model.Category;
+
+/**
+ * Created by piyaponf on 11/4/2017 AD.
+ */
+
+public class MyDatabase {
+
+    private static final String TABLE_QUESTIONS = "QUESTIONS";
+    private static final String TABLE_CATEGORIES = "CATEGORIES";
+    private static final String TABLE_CHOICE = "CHOICE";
+    public static final String ALL_TABLES [] = {TABLE_QUESTIONS,TABLE_CATEGORIES,TABLE_CHOICE};
+    private static final int VERSION = 1;
+    private DatabaseHandler databaseHandler;
+
+    public MyDatabase(Context context) {
+        this.databaseHandler = new DatabaseHandler(context);
+    }
+
+    public List<Category> getCategories(){
+        SQLiteDatabase db = databaseHandler.openDatabase();
+        List<Category> cats = new ArrayList<>();
+        String query = String.format("SELECT * FROM %s",TABLE_CATEGORIES);
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            do {
+                Category category = new Category(
+                        Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1));
+                cats.add(category);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return cats;
+    }
+}

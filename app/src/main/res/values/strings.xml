@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Driving test</string>
+    <string name="seconds">Seconds</string>
+    <string name="count_format" translatable="false">%1$d/%2$d</string>
+    <string name="timer_format" translatable="false">%1$s %2$s</string>
+    <string name="testing">Testing</string>
+    <string name="learning">Learning</string>
+</resources>

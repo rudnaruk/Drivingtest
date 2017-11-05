@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Driving test</string>
+    <string name="seconds">วินาที</string>
+    <string name="learning">เรียนรู้</string>
+    <string name="testing">ทดสอบ</string>
+</resources>
