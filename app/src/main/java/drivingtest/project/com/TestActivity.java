@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import drivingtest.project.com.database.MyDatabase;
 import drivingtest.project.com.model.Question;
 import drivingtest.project.com.view.TestingAdapter;
 
-public class TestActivity extends BaseActivity {
+public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQuestionListener {
     private String TAG = "drivingtest.project.com";
     private final int MAX_COUNT = 50;
 
@@ -36,10 +37,11 @@ public class TestActivity extends BaseActivity {
 
     ArrayList<Question> questions = new ArrayList<>();
 
-    MyTextView tvCount;
-    MyTextView tvTimer;
-    RecyclerView mRecyclerView;
-    View viewDivider,viewTimer;
+    private MyTextView tvCount;
+    private MyTextView tvTimer;
+    private RecyclerView mRecyclerView;
+    private View viewDivider,viewTimer;
+    private Button btnCalculate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class TestActivity extends BaseActivity {
         viewTimer = findViewById(R.id.viewTimer);
         tvCount.setText(getString(R.string.count_format,0,MAX_COUNT));
         tvTimer.setText(getTimeCounter(MAX_TIME_MILLISECOND));
+        btnCalculate = (Button)findViewById(R.id.btnCalculate);
+        btnCalculate.setEnabled(false);
 
         setUpMode();
         //load question by cat id
@@ -147,6 +151,23 @@ public class TestActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onDoQuestion() {
+        int count = 0;
+        for(Question question : questions){
+            if(question.getSelectedChoiceId()!=-1){
+                count++;
+            }
+        }
+        tvCount.setText(getString(R.string.count_format,count,questions.size()));
+        if(count == questions.size()){
+            testDone();
+        }
+    }
+
+    private void testDone(){
+        btnCalculate.setEnabled(true);
+    }
     /**
      * for async-task load question from database
      */
@@ -164,6 +185,7 @@ public class TestActivity extends BaseActivity {
             //add question to recycle view
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
             TestingAdapter mTestingAdapter = new TestingAdapter(questions,getApplicationContext(),mRecyclerView);
+            mTestingAdapter.setOnDoQuestionListener(TestActivity.this);
             mRecyclerView.setAdapter(mTestingAdapter);
             mRecyclerView.setLayoutManager(linearLayoutManager);
             tvCount.setText(getString(R.string.count_format,0,questions.size()));

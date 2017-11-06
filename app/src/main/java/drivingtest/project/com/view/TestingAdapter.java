@@ -29,6 +29,7 @@ public class TestingAdapter extends RecyclerView.Adapter<TestingAdapter.TestingV
     private final MyDatabase myDatabase;
     private List<Question> questions;
     private Context context;
+    private OnDoQuestionListener onDoQuestionListener = null;
     public TestingAdapter(List<Question> questions, Context context, RecyclerView mRecyclerView) {
         this.questions = questions;
         this.context = context;
@@ -79,6 +80,10 @@ public class TestingAdapter extends RecyclerView.Adapter<TestingAdapter.TestingV
         return questions.size();
     }
 
+    public void setOnDoQuestionListener(OnDoQuestionListener onDoQuestionListener) {
+        this.onDoQuestionListener = onDoQuestionListener;
+    }
+
     @Override
     public void onClick(View view) {
         Choice choice = (Choice) view.getTag();
@@ -91,6 +96,9 @@ public class TestingAdapter extends RecyclerView.Adapter<TestingAdapter.TestingV
             question.setSelectedChoiceId(choice.getCh_id());
         }else if(question!=null){
             question.setSelectedChoiceId(-1);
+        }
+        if(this.onDoQuestionListener!=null){
+            this.onDoQuestionListener.onDoQuestion();
         }
         mRecyclerView.post(new Runnable() {
             @Override public void run() {
@@ -161,5 +169,8 @@ public class TestingAdapter extends RecyclerView.Adapter<TestingAdapter.TestingV
             mQuestion.getChoices().addAll(choices);
             TestingAdapter.this.notifyItemChanged(mQuestion.getPosition());
         }
+    }
+    public interface OnDoQuestionListener{
+        public void onDoQuestion();
     }
 }
