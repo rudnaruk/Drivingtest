@@ -16,6 +16,7 @@ import drivingtest.project.com.base.BaseActivity;
 import drivingtest.project.com.base.view.MyTextView;
 import drivingtest.project.com.database.MyDatabase;
 import drivingtest.project.com.model.Question;
+import drivingtest.project.com.view.MyDialog;
 import drivingtest.project.com.view.TestingAdapter;
 
 public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQuestionListener {
@@ -42,6 +43,7 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
     private RecyclerView mRecyclerView;
     private View viewDivider,viewTimer;
     private Button btnCalculate;
+    private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +108,7 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
      */
     private void startTesting(){
         showTimer();
-        new CountDownTimer(MAX_TIME_MILLISECOND, 1000) {
+        countDownTimer = new CountDownTimer(MAX_TIME_MILLISECOND, 1000) {
             public void onTick(long millisUntilFinished) {
                 tvTimer.setText(getTimeCounter(millisUntilFinished));
             }
@@ -115,7 +117,8 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
                 tvTimer.setText(getTimeCounter(0));
                 onTimeUp();
             }
-        }.start();
+        };
+        countDownTimer.start();
     }
 
 
@@ -123,7 +126,7 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
      * When Time up then calculate score
      */
     private void onTimeUp(){
-
+        calulateScore(null);
     }
 
     /**
@@ -168,6 +171,21 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
     private void testDone(){
         btnCalculate.setEnabled(true);
     }
+
+    //when time up or user click finish
+    public void calulateScore(View view) {
+        countDownTimer.cancel();
+        final MyDialog myDialog = MyDialog.getInstance();
+        myDialog.setOnOkClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myDialog.dismissDialog();
+                finish();
+            }
+        });
+        myDialog.showDialog(this,"Test Result",getString(R.string.your_score,10));
+    }
+
     /**
      * for async-task load question from database
      */
@@ -196,4 +214,5 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
             }
         }
     }
+
 }

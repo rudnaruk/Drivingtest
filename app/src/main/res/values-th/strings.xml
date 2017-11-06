@@ -11,4 +11,5 @@
     <string name="choice_b">ข.</string>
     <string name="choice_c">ค.</string>
     <string name="choice_d">ง.</string>
+    <string name="your_score">คะแนนของคุณคือ %1$d คะแนน</string>
 </resources>

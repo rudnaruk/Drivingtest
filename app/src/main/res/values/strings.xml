@@ -12,4 +12,5 @@
     <string name="choice_b">B.</string>
     <string name="choice_c">C.</string>
     <string name="choice_d">D.</string>
+    <string name="your_score">Your score is %1$d.</string>
 </resources>
