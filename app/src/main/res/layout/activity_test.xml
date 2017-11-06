@@ -4,39 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appWhite"
+    android:background="@color/appGray"
     tools:context="drivingtest.project.com.TestActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <include layout="@layout/header_testing"></include>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/viewPager"
+            android:layout_weight="1"
+            android:scrollbarFadeDuration="0"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="match_parent" />
 
-            <drivingtest.project.com.base.MyTextView
-                android:id="@+id/tvCount"
-                style="@style/AppText"
-                android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/appWhite"
+            android:padding="5dp">
+
+            <Button
+                android:id="@+id/btnCalculate"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="0/50"
-                android:textStyle="bold" />
-
-            <drivingtest.project.com.base.MyTextView
-                android:id="@+id/tvTimer"
-                style="@style/AppText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="500 วินาที"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-
+                android:text="@string/calculate" />
+        </FrameLayout>
     </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>

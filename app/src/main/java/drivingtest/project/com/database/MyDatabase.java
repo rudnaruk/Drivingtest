@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import drivingtest.project.com.model.Category;
+import drivingtest.project.com.model.Choice;
+import drivingtest.project.com.model.Question;
 
 /**
  * Created by piyaponf on 11/4/2017 AD.
@@ -41,5 +43,42 @@ public class MyDatabase {
         }
         db.close();
         return cats;
+    }
+    public List<Question> getAllQuestion(){
+        SQLiteDatabase db = databaseHandler.openDatabase();
+        List<Question> questions = new ArrayList<>();
+        String query = String.format("SELECT * FROM %s",TABLE_QUESTIONS);
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            do {
+                Question question = new Question(
+                        Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        Integer.parseInt(cursor.getString(3)));
+                questions.add(question);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return questions;
+    }
+
+    public List<Choice> getChoiceByQuestionId(int qid){
+        SQLiteDatabase db = databaseHandler.openDatabase();
+        List<Choice> choices = new ArrayList<>();
+        String query = String.format("SELECT * FROM %s WHERE q_id=%d",TABLE_CHOICE,qid);
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            do {
+                Choice choice = new Choice(
+                        Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1),
+                        cursor.getString(2).equals("1"),
+                        Integer.parseInt(cursor.getString(3)));
+                choices.add(choice);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return choices;
     }
 }

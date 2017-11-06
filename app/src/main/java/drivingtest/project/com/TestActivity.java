@@ -2,12 +2,17 @@ package drivingtest.project.com;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import drivingtest.project.com.base.MyTextView;
+import java.util.List;
+
 import drivingtest.project.com.base.BaseActivity;
+import drivingtest.project.com.base.view.MyTextView;
 import drivingtest.project.com.database.MyDatabase;
-import drivingtest.project.com.model.Category;
+import drivingtest.project.com.model.Question;
+import drivingtest.project.com.view.TestingAdapter;
 
 public class TestActivity extends BaseActivity {
     private String TAG = "drivingtest.project.com";
@@ -18,6 +23,7 @@ public class TestActivity extends BaseActivity {
 
     MyTextView tvCount;
     MyTextView tvTimer;
+    RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,7 @@ public class TestActivity extends BaseActivity {
     public void iniView() {
         tvTimer = findViewById(R.id.tvTimer);
         tvCount = findViewById(R.id.tvCount);
+        mRecyclerView = (RecyclerView)findViewById(R.id.viewPager);
 
         tvCount.setText(getString(R.string.count_format,0,MAX_COUNT));
         tvTimer.setText(getTimeCounter(MAX_TIME_MILLISECOND));
@@ -35,9 +42,15 @@ public class TestActivity extends BaseActivity {
         // start Test
         startTesting();
         MyDatabase myDatabase = new MyDatabase(this);
-        for(Category cat :myDatabase.getCategories()){
-            Log.d(TAG,cat.getName() + " ("+cat.getCatid()+")");
+        List<Question> questions =  myDatabase.getAllQuestion();
+        for(Question question :questions){
+            Log.d(TAG,question.getQuestion() + " ("+question.getCatid()+")");
         }
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        TestingAdapter mTestingAdapter = new TestingAdapter(questions,this);
+        mRecyclerView.setAdapter(mTestingAdapter);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        tvCount.setText(getString(R.string.count_format,0,questions.size()));
     }
 
     @Override

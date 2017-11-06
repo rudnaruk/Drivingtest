@@ -4,5 +4,8 @@
     <string name="count_format" translatable="false">%1$d/%2$d</string>
     <string name="timer_format" translatable="false">%1$s %2$s</string>
     <string name="testing">Testing</string>
+    <string name="remaining_time">Remaining:</string>
     <string name="learning">Learning</string>
+    <string name="remaining_count">Total:</string>
+    <string name="calculate">Submit</string>
 </resources>

@@ -1,4 +1,4 @@
-package drivingtest.project.com.base;
+package drivingtest.project.com.base.view;
 
 import android.content.Context;
 import android.graphics.Typeface;
