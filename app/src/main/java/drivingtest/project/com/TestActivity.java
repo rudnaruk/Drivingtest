@@ -216,7 +216,16 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
 
             //start timer after question was loaded.
             if(selectedMode == MODE_TIME_COUNTER){
-                startTesting();
+                final MyDialog myDialog = MyDialog.getInstance();
+                myDialog.setOnOkClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        myDialog.dismissDialog();
+                        startTesting();
+                    }
+                });
+                myDialog.showDialog(TestActivity.this,getString(R.string.start),getString(R.string.start_text));
+
             }
         }
     }

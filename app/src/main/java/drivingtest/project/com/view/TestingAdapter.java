@@ -102,7 +102,11 @@ public class TestingAdapter extends RecyclerView.Adapter<TestingAdapter.TestingV
         }
         mRecyclerView.post(new Runnable() {
             @Override public void run() {
-                notifyItemChanged(question.getPosition());
+                try {
+                    notifyItemChanged(question.getPosition());
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
             }
         });
     }

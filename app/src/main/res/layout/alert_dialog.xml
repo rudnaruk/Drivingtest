@@ -32,6 +32,7 @@
         android:id="@+id/myTextView"
         style="@style/AppText"
         android:textStyle="bold"
+        android:gravity="center"
         android:layout_gravity="center"
         android:padding="15dp"
         android:layout_width="wrap_content"
