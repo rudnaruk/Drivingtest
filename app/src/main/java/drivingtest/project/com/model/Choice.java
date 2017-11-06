@@ -9,7 +9,7 @@ public class Choice {
     private String name;
     private boolean flag;
     private int qid;
-
+    private boolean isChecked = false;
     public Choice(int ch_id, String name, boolean flag, int qid) {
         this.ch_id = ch_id;
         this.name = name;
@@ -31,5 +31,13 @@ public class Choice {
 
     public int getQid() {
         return qid;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 }

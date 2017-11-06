@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="15dp"
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
-    android:layout_height="wrap_content">
+    android:paddingTop="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,36 +34,45 @@
             android:scaleType="fitCenter"
             app:srcCompat="@mipmap/ic_launcher" />
 
-        <RadioGroup
-            android:id="@+id/rgChoice"
+        <drivingtest.project.com.base.view.MyRadioButton
+            android:id="@+id/radioButton1"
+            style="@style/AppText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="5dp">
+            android:layout_height="wrap_content"
+            android:button="@drawable/radio_selector"
+            android:padding="3dp"
+            android:text="RadioButton"
+            android:textStyle="bold" />
 
-            <RadioButton
-                android:id="@+id/radioButton1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RadioButton" />
+        <drivingtest.project.com.base.view.MyRadioButton
+            android:id="@+id/radioButton2"
+            style="@style/AppText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/radio_selector"
+            android:padding="3dp"
+            android:text="RadioButton"
+            android:textStyle="bold" />
 
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RadioButton" />
+        <drivingtest.project.com.base.view.MyRadioButton
+            android:id="@+id/radioButton3"
+            style="@style/AppText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/radio_selector"
+            android:padding="3dp"
+            android:text="RadioButton"
+            android:textStyle="bold" />
 
-            <RadioButton
-                android:id="@+id/radioButton3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RadioButton" />
-
-            <RadioButton
-                android:id="@+id/radioButton4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RadioButton" />
-        </RadioGroup>
+        <drivingtest.project.com.base.view.MyRadioButton
+            android:id="@+id/radioButton4"
+            style="@style/AppText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/radio_selector"
+            android:padding="3dp"
+            android:text="RadioButton"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

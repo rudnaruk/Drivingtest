@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -25,14 +24,15 @@ import drivingtest.project.com.model.Question;
  * Created by piyaponf on 11/5/2017 AD.
  */
 
-public class TestingAdapter extends RecyclerView.Adapter<TestingAdapter.TestingViewHolder>{
-
+public class TestingAdapter extends RecyclerView.Adapter<TestingAdapter.TestingViewHolder> implements View.OnClickListener {
+    private RecyclerView mRecyclerView;
     private final MyDatabase myDatabase;
     private List<Question> questions;
     private Context context;
-    public TestingAdapter(List<Question> questions, Context context) {
+    public TestingAdapter(List<Question> questions, Context context, RecyclerView mRecyclerView) {
         this.questions = questions;
         this.context = context;
+        this.mRecyclerView = mRecyclerView;
         myDatabase = new MyDatabase(context);
     }
 
@@ -57,12 +57,19 @@ public class TestingAdapter extends RecyclerView.Adapter<TestingAdapter.TestingV
             task.execute(question);
         }else{
             RadioButton []rvChoices = {holder.rbChoice1,holder.rbChoice2,holder.rbChoice3,holder.rbChoice4};
+            int isLableChoice[] ={R.string.choice_a,R.string.choice_b,R.string.choice_c,R.string.choice_d};
             for (RadioButton radioButton: rvChoices){
                 radioButton.setVisibility(View.GONE);
             }
             for(int i =0;(i< question.getChoices().size()&& i<4);i++){
-                rvChoices[i].setText(question.getChoices().get(i).getName());
+                rvChoices[i].setText(String.format("%s %s",context.getString(isLableChoice[i]),question.getChoices().get(i).getName()));
                 rvChoices[i].setVisibility(View.VISIBLE);
+                rvChoices[i].setChecked(false);
+                if(question.getChoices().get(i).isChecked()){
+                    rvChoices[i].setChecked(true);
+                }
+                rvChoices[i].setTag(question.getChoices().get(i));
+                rvChoices[i].setOnClickListener(TestingAdapter.this);
             }
         }
     }
@@ -72,13 +79,49 @@ public class TestingAdapter extends RecyclerView.Adapter<TestingAdapter.TestingV
         return questions.size();
     }
 
+    @Override
+    public void onClick(View view) {
+        Choice choice = (Choice) view.getTag();
+        final Question question = findQuestionByQuestionId(choice.getQid());
+        for(Choice mChoice1 : question.getChoices()){
+            mChoice1.setChecked(false);
+        }
+        choice.setChecked(true);
+        if(choice!=null && question!=null){
+            question.setSelectedChoiceId(choice.getCh_id());
+        }else if(question!=null){
+            question.setSelectedChoiceId(-1);
+        }
+        mRecyclerView.post(new Runnable() {
+            @Override public void run() {
+                notifyItemChanged(question.getPosition());
+            }
+        });
+    }
+
+    /**
+     * for find question in quesion list by question id
+     * @param qid is question id
+     * @return question obj.
+     */
+    private Question findQuestionByQuestionId(int qid){
+        Question question =null;
+        for(Question mQuestion : questions){
+            if(mQuestion.getQid()==qid){
+                question = mQuestion;
+                break;
+            }
+        }
+        return question;
+    }
+
+
     /**
      * View holder for product.
      */
     public class TestingViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvQuestion;
-        public RadioGroup radioGroup;
         public ImageView ivQuestion;
         public RadioButton rbChoice1;
         public RadioButton rbChoice2;
@@ -95,7 +138,6 @@ public class TestingAdapter extends RecyclerView.Adapter<TestingAdapter.TestingV
             super(view);
             tvQuestion = view.findViewById(R.id.tvQuestion);
             ivQuestion = view.findViewById(R.id.ivQuestion);
-            radioGroup = view.findViewById(R.id.rgChoice);
             rbChoice1 = view.findViewById(R.id.radioButton1);
             rbChoice2 = view.findViewById(R.id.radioButton2);
             rbChoice3 = view.findViewById(R.id.radioButton3);
