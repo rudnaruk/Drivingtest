@@ -61,6 +61,8 @@ public class MyDialog {
         tvTitle.setText(title);
         tv.setText(msg);
         alertDialog = dialogBuilder.create();
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.show();
     }
 

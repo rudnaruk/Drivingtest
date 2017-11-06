@@ -4,9 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/appWhite"
-    android:padding="15dp">
+    android:orientation="vertical">
 
     <LinearLayout
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
@@ -98,6 +101,13 @@
         </LinearLayout>
 
     </LinearLayout>
+    <FrameLayout
+        android:layout_marginTop="5dp"
+        android:background="@color/appGray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </FrameLayout>
 
 
 </LinearLayout>

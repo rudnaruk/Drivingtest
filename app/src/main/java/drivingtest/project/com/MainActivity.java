@@ -14,7 +14,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goTesting(View view) {
-        Intent i = new Intent(this, TestActivity.class);
-        startActivity(i);
+        int i = view.getId();
+        Intent intent = new Intent(this, TestActivity.class);
+        if(i == R.id.button) {
+            intent.putExtra("cat_id",1);
+            intent.putExtra("time_mode", TestActivity.MODE_TIME_COUNTER);
+        }else{
+            intent.putExtra("cat_id",1);
+            intent.putExtra("time_mode", TestActivity.MODE_NO_TIMEE);
+        }
+        startActivity(intent);
     }
 }

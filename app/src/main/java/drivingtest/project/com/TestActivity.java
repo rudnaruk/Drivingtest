@@ -15,6 +15,7 @@ import java.util.List;
 import drivingtest.project.com.base.BaseActivity;
 import drivingtest.project.com.base.view.MyTextView;
 import drivingtest.project.com.database.MyDatabase;
+import drivingtest.project.com.model.Choice;
 import drivingtest.project.com.model.Question;
 import drivingtest.project.com.view.MyDialog;
 import drivingtest.project.com.view.TestingAdapter;
@@ -168,13 +169,18 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
         }
     }
 
+    /**
+     * When testing done
+     */
     private void testDone(){
         btnCalculate.setEnabled(true);
     }
 
     //when time up or user click finish
     public void calulateScore(View view) {
-        countDownTimer.cancel();
+        if(countDownTimer !=null) {
+            countDownTimer.cancel();
+        }
         final MyDialog myDialog = MyDialog.getInstance();
         myDialog.setOnOkClickListener(new View.OnClickListener() {
             @Override
@@ -183,7 +189,7 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
                 finish();
             }
         });
-        myDialog.showDialog(this,"Test Result",getString(R.string.your_score,10));
+        myDialog.showDialog(this,"Test Result",getString(R.string.your_score,calculateScore()));
     }
 
     /**
@@ -213,6 +219,18 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
                 startTesting();
             }
         }
+    }
+
+    private int calculateScore(){
+        int i = 0;
+        for(Question question: questions){
+            for(Choice choice : question.getChoices()){
+                if(choice.isFlag() && choice.isChecked()){
+                    i++;
+                }
+            }
+        }
+        return i;
     }
 
 }

@@ -16,23 +16,28 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/viewPager"
-            android:layout_weight="1"
-            android:scrollbarFadeDuration="0"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbarFadeDuration="0" />
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/appWhite"
-            android:padding="5dp">
+            android:background="@color/appWhite">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/appGray" />
 
             <Button
                 android:id="@+id/btnCalculate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="calulateScore"
+                android:layout_margin="5dp"
                 android:text="@string/calculate" />
         </FrameLayout>
     </LinearLayout>
