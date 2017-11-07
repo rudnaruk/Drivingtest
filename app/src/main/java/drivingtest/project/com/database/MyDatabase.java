@@ -50,6 +50,25 @@ public class MyDatabase {
         db.close();
         return cats;
     }
+    /**
+     * get a category object
+     * @return  a category object
+     */
+    public Category getCategoriesByCategoryId(int c_id){
+        SQLiteDatabase db = databaseHandler.openDatabase();
+        String query = String.format("SELECT * FROM %s WHERE c_id=%d",TABLE_CATEGORIES,c_id);
+        Category category =null;
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            do {
+                category = new Category(
+                        Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return category;
+    }
 
     /**
      * get all question

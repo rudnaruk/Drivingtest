@@ -27,12 +27,19 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
     //default cat_id is 1
     private int cat_id = 1;
 
+
     public static final int MODE_TIME_COUNTER = 1;
     public static final int MODE_NO_TIMEE = 0;
+
+    //type pre&post-test
+    public static final int TYPE_PRE_TEST = 3;
+    public static final int TYPE_POST_TEST = 4;
 
     //default mode time counter
     private int selectedMode = MODE_TIME_COUNTER;
 
+    //default type pretest
+    private int selectedType = TYPE_PRE_TEST;
 
     // minutes * 60 sec * 1000
     private final int MAX_TIME_MILLISECOND = 1*60*1000;
@@ -77,6 +84,7 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
         Intent intent = getIntent();
         cat_id = intent.getIntExtra("cat_id",cat_id);
         selectedMode = intent.getIntExtra("time_mode",selectedMode);
+        selectedType = intent.getIntExtra("test_type",selectedType);
         hideTimer();
     }
     @Override
