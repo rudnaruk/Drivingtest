@@ -36,12 +36,16 @@ public class SummaryScoreActivity extends BaseActivity{
         selectedCategory = myDatabase.getCategoriesByCategoryId(cat_id);
         scores = (ArrayList<Score>) myDatabase.getScoreByCategoryId(cat_id);
         graph = (GraphView) findViewById(R.id.graph);
-        DataPoint[] dataPoints = new DataPoint[scores.size()];
+        DataPoint[] dataPoints = new DataPoint[scores.size()+1];
+        Date startdate = stringToDate(scores.get(0).getDate(),"yyyy-MM-dd HH:mm:ss");;
+        Date lastdate = stringToDate(scores.get(scores.size()-1).getDate(),"yyyy-MM-dd HH:mm:ss");
         for(int i=0;i<scores.size();i++){
             Score score = scores.get(i);
-            Date d1 = stringToDate(score.getDate(),"EEE MMM d HH:mm:ss zz yyyy");
+            //EEE MMM d HH:mm:ss zz yyyy
+            Date d1 = stringToDate(score.getDate(),"yyyy-MM-dd HH:mm:ss");
             dataPoints[i] = new DataPoint(d1, score.getScore());
         }
+        dataPoints[scores.size()] = new DataPoint(lastdate, 0);
 
 // you can directly pass Date objects to DataPoint-Constructor
 // this will convert the Date to double via Date#getTime()
@@ -56,19 +60,19 @@ public class SummaryScoreActivity extends BaseActivity{
             }
         });
 
-        series.setSpacing(5);
+        series.setSpacing(50);
 
 // draw values on top
         series.setDrawValuesOnTop(true);
         series.setValuesOnTopColor(Color.RED);
 
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
-        graph.getGridLabelRenderer().setNumHorizontalLabels(10); // only 4 because of the space
+        graph.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
 
 // set manual x bounds to have nice steps
-//        graph.getViewport().setMinX(d1.getTime());
-//        graph.getViewport().setMaxX(d11.getTime());
-//        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinX(startdate.getTime());
+        graph.getViewport().setMaxX(lastdate.getTime());
+        graph.getViewport().setXAxisBoundsManual(true);
 
 // as we use dates as labels, the human rounding to nice readable numbers
 // is not necessary
