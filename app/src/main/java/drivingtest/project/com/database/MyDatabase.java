@@ -10,6 +10,7 @@ import java.util.List;
 import drivingtest.project.com.model.Category;
 import drivingtest.project.com.model.Choice;
 import drivingtest.project.com.model.Question;
+import drivingtest.project.com.model.Score;
 
 /**
  * Created by piyaponf on 11/4/2017 AD.
@@ -20,7 +21,8 @@ public class MyDatabase {
     private static final String TABLE_QUESTIONS = "QUESTIONS";
     private static final String TABLE_CATEGORIES = "CATEGORIES";
     private static final String TABLE_CHOICE = "CHOICE";
-    public static final String ALL_TABLES [] = {TABLE_QUESTIONS,TABLE_CATEGORIES,TABLE_CHOICE};
+    private static final String TABLE_SCORE = "SCORE";
+    public static final String ALL_TABLES [] = {TABLE_QUESTIONS,TABLE_CATEGORIES,TABLE_CHOICE,TABLE_SCORE};
     private static final int VERSION = 1;
     private DatabaseHandler databaseHandler;
 
@@ -119,4 +121,31 @@ public class MyDatabase {
         db.close();
         return choices;
     }
+
+    /**
+     * get all score by category id
+     * @param cid is category id
+     * @return list of score
+     */
+    public List<Score> getScoreByCategoryId(int cid){
+        SQLiteDatabase db = databaseHandler.openDatabase();
+        List<Score> scores = new ArrayList<>();
+        String query = String.format("SELECT * FROM %s WHERE c_id=%d",TABLE_SCORE,cid);
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            do {
+                Score score = new Score(
+                        Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1),
+                        Integer.parseInt(cursor.getString(2)),
+                        Integer.parseInt(cursor.getString(3)),
+                        Integer.parseInt(cursor.getString(4))
+                );
+                scores.add(score);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return scores;
+    }
+
 }

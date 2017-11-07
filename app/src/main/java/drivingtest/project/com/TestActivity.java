@@ -86,7 +86,9 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
 
     @Override
     public void onClose() {
-
+        if(countDownTimer !=null) {
+            countDownTimer.cancel();
+        }
     }
     /**
      * for hide view time counter and divider
