@@ -256,7 +256,7 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
 
     private void saveScore(){
         SaveScoreTask saveScoreTask = new SaveScoreTask();
-        saveScoreTask.equals(new Score(0,"",cat_id,calculateScore(),selectedType));
+        saveScoreTask.execute(new Score(0,"",cat_id,calculateScore(),selectedType));
     }
 
     private class SaveScoreTask extends AsyncTask<Score, Void, Void> {
