@@ -18,4 +18,7 @@
     <string name="post">หลังเรียน</string>
     <string name="score">คะแนน</string>
     <string name="date">ครั้งที่</string>
+    <string name="posttest">แบบทดสอบหลังการเรียนรู้</string>
+    <string name="guidelines">แนวข้อสอบใบอนุญาตขับขี่</string>
+    <string name="test">แบบทดสอบรวมข้อมูลความรู้</string>
 </resources>

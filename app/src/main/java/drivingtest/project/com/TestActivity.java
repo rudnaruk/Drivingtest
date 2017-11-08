@@ -211,7 +211,11 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
         @Override
         protected List<Question> doInBackground(Integer... integers) {
             MyDatabase myDatabase = new MyDatabase(getApplicationContext());
-            return myDatabase.getQuestionByCategoryId(integers[0]);
+            int catID= integers[0];
+            if(catID == 8){
+                return myDatabase.getAllQuestion();
+            }
+            return myDatabase.getQuestionByCategoryId(catID);
         }
 
         @Override

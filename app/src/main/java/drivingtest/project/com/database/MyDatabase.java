@@ -78,7 +78,7 @@ public class MyDatabase {
     public List<Question> getAllQuestion(){
         SQLiteDatabase db = databaseHandler.openDatabase();
         List<Question> questions = new ArrayList<>();
-        String query = String.format("SELECT * FROM %s",TABLE_QUESTIONS);
+        String query = String.format("SELECT * FROM %s ORDER BY RANDOM() LIMIT 0,50",TABLE_QUESTIONS);
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
             do {

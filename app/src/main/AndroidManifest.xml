@@ -16,8 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestActivity"></activity>
-        <activity android:name=".SummaryScoreActivity"></activity>
+        <activity android:name=".TestActivity" />
+        <activity android:name=".SummaryScoreActivity" />
+        <activity android:name=".TestingMenuActivity" />
+        <activity android:name=".TestingSubMenuActivity" />
+        <activity android:name=".PosttestMenuActivity"></activity>
     </application>
 
 </manifest>

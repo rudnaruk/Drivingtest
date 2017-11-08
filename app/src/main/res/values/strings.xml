@@ -19,4 +19,12 @@
     <string name="start_text">Timer will be started after click "OK" to start testing.</string>
     <string name="pre">Pre-Test</string>
     <string name="post">Post-Test</string>
+    <string name="posttest">แบบทดสอบหลังการเรียนรู้</string>
+    <string name="guidelines" translatable="false">แนวข้อสอบใบอนุญาตขับขี่</string>
+    <string name="test" translatable="false">แบบทดสอบรวมข้อมูลความรู้</string>
+    <string name="posttestcat1" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง พ.ร.บ. ทางบก</string>
+    <string name="posttestcat2" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง ป้ายจราจร</string>
+    <string name="posttestcat3" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง การใช้ถนนอย่างปลอดภัย</string>
+    <string name="posttestcat4" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง วิธีปฏิบัติในการใช้รถ</string>
+    <string name="posttestcat5" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง หมายเลขสายด่วน</string>
 </resources>
