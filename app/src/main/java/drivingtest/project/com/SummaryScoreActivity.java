@@ -2,6 +2,7 @@ package drivingtest.project.com;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.view.View;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
@@ -31,15 +32,22 @@ public class SummaryScoreActivity extends BaseActivity{
     private ArrayList<Score> scores;
     private GraphView graph;
     private MyTextView tvCatName;
+    private View viewDetail;
 
     @Override
     public void iniView() {
+        setUpMode();
         tvCatName = (MyTextView) findViewById(R.id.tvCatName);
         MyDatabase myDatabase = new MyDatabase(getApplicationContext());
         selectedCategory = myDatabase.getCategoriesByCategoryId(cat_id);
         tvCatName.setText(selectedCategory.getName());
         scores = (ArrayList<Score>) myDatabase.getScoreByCategoryId(cat_id);
         graph = (GraphView) findViewById(R.id.graph);
+        viewDetail = findViewById(R.id.viewDetail);
+
+        if(cat_id >5){
+            viewDetail.setVisibility(View.GONE);
+        }
         final DataPoint[] dataPoints = new DataPoint[scores.size()+1];
         for(int i=0;i<scores.size();i++){
             Score score = scores.get(i);
@@ -57,6 +65,9 @@ public class SummaryScoreActivity extends BaseActivity{
         series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
             @Override
             public int get(DataPoint data) {
+                if(cat_id>5){
+                    return Color.rgb(16,200, 72);
+                }
                 for(int i=0;i<scores.size();i++) {
                     DataPoint dataPoint = dataPoints[i];
                     if (data == dataPoint && scores.get(i).getType()==TestActivity.TYPE_PRE_TEST) {

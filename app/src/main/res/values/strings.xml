@@ -20,7 +20,10 @@
     <string name="pre">Pre-Test</string>
     <string name="post">Post-Test</string>
     <string name="posttest">แบบทดสอบหลังการเรียนรู้</string>
+    <string name="test_summary" translatable="false">ผลการทดสอบความรู้</string>
     <string name="guidelines" translatable="false">แนวข้อสอบใบอนุญาตขับขี่</string>
+    <string name="guidelines1" translatable="false">แนวข้อสอบใบอนุญาตขับขี่รถยนต์</string>
+    <string name="guidelines2" translatable="false">แนวข้อสอบใบอนุญาตขับขี่รถจักรยานยนต์</string>
     <string name="test" translatable="false">แบบทดสอบรวมข้อมูลความรู้</string>
     <string name="posttestcat1" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง พ.ร.บ. ทางบก</string>
     <string name="posttestcat2" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง ป้ายจราจร</string>

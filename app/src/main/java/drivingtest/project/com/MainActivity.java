@@ -20,10 +20,6 @@ public class MainActivity extends AppCompatActivity {
         }else if(i == R.id.button1){
             Intent intent = new Intent(this, TestingMenuActivity.class);
             startActivity(intent);
-        }else{
-            Intent intent = new Intent(this, SummaryScoreActivity.class);
-            intent.putExtra("cat_id",1);
-            startActivity(intent);
         }
     }
 }

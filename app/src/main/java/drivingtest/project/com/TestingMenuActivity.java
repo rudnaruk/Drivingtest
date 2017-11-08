@@ -22,10 +22,14 @@ public class TestingMenuActivity extends AppCompatActivity {
             Intent intent = new Intent(this, TestActivity.class);
             intent.putExtra("cat_id",8);
             intent.putExtra("test_type",TestActivity.TYPE_PRE_TEST);
-            intent.putExtra("time_mode", TestActivity.MODE_TIME_COUNTER);
+            intent.putExtra("time_mode", TestActivity.MODE_NO_TIMER);
             startActivity(intent);
         }else if(i==R.id.btnMenu3){
             Intent intent = new Intent(this, TestingSubMenuActivity.class);
+            startActivity(intent);
+        }else if(i==R.id.btnMenu4){
+            Intent intent = new Intent(this, SummaryScoreActivity.class);
+            intent.putExtra("cat_id",8);
             startActivity(intent);
         }
     }
