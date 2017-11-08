@@ -1,5 +1,6 @@
 package drivingtest.project.com.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -165,6 +166,20 @@ public class MyDatabase {
         }
         db.close();
         return scores;
+    }
+
+    /**
+     * for save score to DB
+     * @param score
+     */
+    public void saveScore(Score score){
+        SQLiteDatabase db = databaseHandler.openDatabase();
+        ContentValues insertValues = new ContentValues();
+        insertValues.put("c_id", score.getC_id());
+        insertValues.put("score", score.getScore());
+        insertValues.put("type", score.getType());
+        db.insert(TABLE_SCORE, null, insertValues);
+        db.close();
     }
 
 }

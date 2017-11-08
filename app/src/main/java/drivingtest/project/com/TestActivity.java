@@ -17,6 +17,7 @@ import drivingtest.project.com.base.view.MyTextView;
 import drivingtest.project.com.database.MyDatabase;
 import drivingtest.project.com.model.Choice;
 import drivingtest.project.com.model.Question;
+import drivingtest.project.com.model.Score;
 import drivingtest.project.com.view.MyDialog;
 import drivingtest.project.com.view.TestingAdapter;
 
@@ -191,6 +192,7 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
         if(countDownTimer !=null) {
             countDownTimer.cancel();
         }
+        saveScore();
         final MyDialog myDialog = MyDialog.getInstance();
         myDialog.setOnOkClickListener(new View.OnClickListener() {
             @Override
@@ -252,4 +254,19 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
         return i;
     }
 
-}
+    private void saveScore(){
+        SaveScoreTask saveScoreTask = new SaveScoreTask();
+        saveScoreTask.equals(new Score(0,"",cat_id,calculateScore(),selectedType));
+    }
+
+    private class SaveScoreTask extends AsyncTask<Score, Void, Void> {
+        @Override
+        protected Void doInBackground(Score... scores) {
+            MyDatabase myDatabase = new MyDatabase(getApplicationContext());
+            myDatabase.saveScore(scores[0]);
+            return null;
+        }
+
+    }
+
+    }

@@ -59,7 +59,7 @@ public class SummaryScoreActivity extends BaseActivity{
             public int get(DataPoint data) {
                 for(int i=0;i<scores.size();i++) {
                     DataPoint dataPoint = dataPoints[i];
-                    if (data == dataPoint && scores.get(i).getType()==0) {
+                    if (data == dataPoint && scores.get(i).getType()==TestActivity.TYPE_PRE_TEST) {
                         return Color.rgb(238,128, 44);
                     }
                 }

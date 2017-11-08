@@ -40,7 +40,7 @@ public class DatabaseHandler  {
             }
         }
 
-        return SQLiteDatabase.openDatabase(dbFile.getPath(), null, SQLiteDatabase.OPEN_READONLY);
+        return SQLiteDatabase.openDatabase(dbFile.getPath(), null, SQLiteDatabase.OPEN_READWRITE);
     }
 
     private void copyDatabase(File dbFile) throws IOException {
