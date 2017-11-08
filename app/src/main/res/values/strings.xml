@@ -25,9 +25,18 @@
     <string name="guidelines1" translatable="false">แนวข้อสอบใบอนุญาตขับขี่รถยนต์</string>
     <string name="guidelines2" translatable="false">แนวข้อสอบใบอนุญาตขับขี่รถจักรยานยนต์</string>
     <string name="test" translatable="false">แบบทดสอบรวมข้อมูลความรู้</string>
-    <string name="posttestcat1" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง พ.ร.บ. ทางบก</string>
-    <string name="posttestcat2" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง ป้ายจราจร</string>
+    <string name="posttestcat1" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง ป้ายจราจร</string>
+    <string name="posttestcat2" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง พ.ร.บ. ทางบก</string>
     <string name="posttestcat3" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง การใช้ถนนอย่างปลอดภัย</string>
     <string name="posttestcat4" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง วิธีปฏิบัติในการใช้รถ</string>
     <string name="posttestcat5" translatable="false">แบบทดสอบหลังการเรียนรู้เรื่อง หมายเลขสายด่วน</string>
+
+    <string name="result_guidelines1" translatable="false">ผลการทดสอบแนวข้อสอบใบอนุญาตขับขี่รถยนต์</string>
+    <string name="result_guidelines2" translatable="false">ผลการทดสอบแนวข้อสอบใบอนุญาตขับขี่รถจักรยานยนต์</string>
+    <string name="result_test" translatable="false">ผลการทดสอบรวมข้อมูลความรู้</string>
+    <string name="result_cat1" translatable="false">ผลการทดสอบเรื่อง ป้ายจราจร</string>
+    <string name="result_cat2" translatable="false">ผลการทดสอบเรื่อง พ.ร.บ. ทางบก</string>
+    <string name="result_cat3" translatable="false">ผลการทดสอบเรื่อง การใช้ถนนอย่างปลอดภัย</string>
+    <string name="result_cat4" translatable="false">ผลการทดสอบเรื่อง วิธีปฏิบัติในการใช้รถ</string>
+    <string name="result_cat5" translatable="false">ผลการทดสอบเรื่อง หมายเลขสายด่วน</string>
 </resources>

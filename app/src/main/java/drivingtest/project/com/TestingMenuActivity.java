@@ -28,8 +28,7 @@ public class TestingMenuActivity extends AppCompatActivity {
             Intent intent = new Intent(this, TestingSubMenuActivity.class);
             startActivity(intent);
         }else if(i==R.id.btnMenu4){
-            Intent intent = new Intent(this, SummaryScoreActivity.class);
-            intent.putExtra("cat_id",8);
+            Intent intent = new Intent(this, SummaryMenuActivity.class);
             startActivity(intent);
         }
     }
