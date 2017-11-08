@@ -24,20 +24,19 @@
             android:text="drivingtest.project.com.base.view.MyTextView"
             android:textStyle="bold" />
 
-        <TableLayout
+        <LinearLayout
             android:layout_gravity="center"
             android:id="@+id/viewDetail"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp">
+                android:orientation="horizontal">
 
                 <FrameLayout
                     android:layout_width="20dp"
@@ -55,6 +54,7 @@
             </TableRow>
 
             <TableRow
+                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/post" />
             </TableRow>
-        </TableLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -99,6 +99,7 @@
         <drivingtest.project.com.base.view.MyTextView
             android:id="@+id/myTextView3"
             android:layout_gravity="bottom"
+            android:paddingRight="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/date" />

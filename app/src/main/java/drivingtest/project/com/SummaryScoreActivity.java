@@ -71,7 +71,7 @@ public class SummaryScoreActivity extends BaseActivity{
 
 // draw values on top
         series.setDrawValuesOnTop(true);
-        series.setValuesOnTopColor(Color.GRAY);
+        series.setValuesOnTopColor(Color.BLACK);
 
 //        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
         graph.getGridLabelRenderer().setNumHorizontalLabels(scores.size()); // only 4 because of the space
