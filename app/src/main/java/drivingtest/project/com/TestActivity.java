@@ -30,7 +30,7 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
 
 
     public static final int MODE_TIME_COUNTER = 1;
-    public static final int MODE_NO_TIMEE = 0;
+    public static final int MODE_NO_TIMER = 0;
 
     //type pre&post-test
     public static final int TYPE_PRE_TEST = 3;

@@ -25,10 +25,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, TestActivity.class);
             intent.putExtra("cat_id",1);
             intent.putExtra("test_type",TestActivity.TYPE_PRE_TEST);
-            intent.putExtra("time_mode", TestActivity.MODE_NO_TIMEE);
+            intent.putExtra("time_mode", TestActivity.MODE_NO_TIMER);
             startActivity(intent);
         }else{
             Intent intent = new Intent(this, SummaryScoreActivity.class);
+            intent.putExtra("cat_id",1);
             startActivity(intent);
         }
     }
