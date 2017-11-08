@@ -149,7 +149,7 @@ public class MyDatabase {
     public List<Score> getScoreByCategoryId(int cid){
         SQLiteDatabase db = databaseHandler.openDatabase();
         List<Score> scores = new ArrayList<>();
-        String query = String.format("SELECT * FROM %s WHERE c_id=%d",TABLE_SCORE,cid);
+        String query = String.format("SELECT * FROM %s WHERE c_id=%d ORDER BY date",TABLE_SCORE,cid);
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
             do {

@@ -17,5 +17,5 @@
     <string name="pre">ก่อนเรียน</string>
     <string name="post">หลังเรียน</string>
     <string name="score">คะแนน</string>
-    <string name="date">วันที่</string>
+    <string name="date">ครั้งที่</string>
 </resources>

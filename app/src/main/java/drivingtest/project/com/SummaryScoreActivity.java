@@ -5,7 +5,6 @@ import android.graphics.Color;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
@@ -16,6 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import drivingtest.project.com.base.BaseActivity;
+import drivingtest.project.com.base.view.MyTextView;
 import drivingtest.project.com.database.MyDatabase;
 import drivingtest.project.com.model.Category;
 import drivingtest.project.com.model.Score;
@@ -30,23 +30,23 @@ public class SummaryScoreActivity extends BaseActivity{
     private Category selectedCategory;
     private ArrayList<Score> scores;
     private GraphView graph;
+    private MyTextView tvCatName;
 
     @Override
     public void iniView() {
+        tvCatName = (MyTextView) findViewById(R.id.tvCatName);
         MyDatabase myDatabase = new MyDatabase(getApplicationContext());
         selectedCategory = myDatabase.getCategoriesByCategoryId(cat_id);
+        tvCatName.setText(selectedCategory.getName());
         scores = (ArrayList<Score>) myDatabase.getScoreByCategoryId(cat_id);
         graph = (GraphView) findViewById(R.id.graph);
         final DataPoint[] dataPoints = new DataPoint[scores.size()+1];
-        Date startdate = getBoundDate(stringToDate(scores.get(0).getDate(),"yyyy-MM-dd HH:mm:ss"),-1);
-        Date lastdate = getBoundDate(stringToDate(scores.get(scores.size()-1).getDate(),"yyyy-MM-dd HH:mm:ss"),1);
         for(int i=0;i<scores.size();i++){
             Score score = scores.get(i);
-            //EEE MMM d HH:mm:ss zz yyyy
-            Date d1 = stringToDate(score.getDate(),"yyyy-MM-dd HH:mm:ss");
-            dataPoints[i] = new DataPoint(d1, score.getScore());
+//          Date d1 = stringToDate(score.getDate(),"yyyy-MM-dd HH:mm:ss");
+            dataPoints[i] = new DataPoint(i+1, score.getScore());
         }
-        dataPoints[scores.size()] = new DataPoint(lastdate, 0);
+        dataPoints[scores.size()] = new DataPoint(scores.size()+1, 0);
 
 // you can directly pass Date objects to DataPoint-Constructor
 // this will convert the Date to double via Date#getTime()
@@ -73,17 +73,17 @@ public class SummaryScoreActivity extends BaseActivity{
         series.setDrawValuesOnTop(true);
         series.setValuesOnTopColor(Color.GRAY);
 
-        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
-        graph.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
+//        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
+        graph.getGridLabelRenderer().setNumHorizontalLabels(scores.size()); // only 4 because of the space
 
 // set manual x bounds to have nice steps
-        graph.getViewport().setMinX(startdate.getTime());
-        graph.getViewport().setMaxX(lastdate.getTime());
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(scores.size()+1);
         graph.getViewport().setXAxisBoundsManual(true);
 
 // as we use dates as labels, the human rounding to nice readable numbers
 // is not necessary
-        graph.getGridLabelRenderer().setHumanRounding(false);
+        graph.getGridLabelRenderer().setHumanRounding(true);
     }
 
     //get mode and category id from intent
