@@ -13,6 +13,10 @@
     <string name="choice_c">C.</string>
     <string name="choice_d">D.</string>
     <string name="your_score">Your score is %1$d.</string>
+    <string name="score">Score</string>
+    <string name="date">Date</string>
     <string name="start">Start Testing</string>
     <string name="start_text">Timer will be started after click "OK" to start testing.</string>
+    <string name="pre">Pre-Test</string>
+    <string name="post">Post-Test</string>
 </resources>

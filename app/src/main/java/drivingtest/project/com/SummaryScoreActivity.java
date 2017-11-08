@@ -12,6 +12,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import drivingtest.project.com.base.BaseActivity;
@@ -36,9 +37,9 @@ public class SummaryScoreActivity extends BaseActivity{
         selectedCategory = myDatabase.getCategoriesByCategoryId(cat_id);
         scores = (ArrayList<Score>) myDatabase.getScoreByCategoryId(cat_id);
         graph = (GraphView) findViewById(R.id.graph);
-        DataPoint[] dataPoints = new DataPoint[scores.size()+1];
-        Date startdate = stringToDate(scores.get(0).getDate(),"yyyy-MM-dd HH:mm:ss");;
-        Date lastdate = stringToDate(scores.get(scores.size()-1).getDate(),"yyyy-MM-dd HH:mm:ss");
+        final DataPoint[] dataPoints = new DataPoint[scores.size()+1];
+        Date startdate = getBoundDate(stringToDate(scores.get(0).getDate(),"yyyy-MM-dd HH:mm:ss"),-1);
+        Date lastdate = getBoundDate(stringToDate(scores.get(scores.size()-1).getDate(),"yyyy-MM-dd HH:mm:ss"),1);
         for(int i=0;i<scores.size();i++){
             Score score = scores.get(i);
             //EEE MMM d HH:mm:ss zz yyyy
@@ -56,7 +57,13 @@ public class SummaryScoreActivity extends BaseActivity{
         series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
             @Override
             public int get(DataPoint data) {
-                return Color.rgb((int) data.getX()*255/4, (int) Math.abs(data.getY()*255/6), 100);
+                for(int i=0;i<scores.size();i++) {
+                    DataPoint dataPoint = dataPoints[i];
+                    if (data == dataPoint && scores.get(i).getType()==0) {
+                        return Color.rgb(238,128, 44);
+                    }
+                }
+                return Color.rgb(255,64, 129);
             }
         });
 
@@ -64,7 +71,7 @@ public class SummaryScoreActivity extends BaseActivity{
 
 // draw values on top
         series.setDrawValuesOnTop(true);
-        series.setValuesOnTopColor(Color.RED);
+        series.setValuesOnTopColor(Color.GRAY);
 
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
         graph.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
@@ -85,6 +92,13 @@ public class SummaryScoreActivity extends BaseActivity{
         cat_id = intent.getIntExtra("cat_id",cat_id);
     }
 
+    private Date getBoundDate(Date dtStartDate,int added){
+        SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yy HH:mm");
+        Calendar c = Calendar.getInstance();
+        c.setTime(dtStartDate);
+        c.add(Calendar.MINUTE, added);  // number of days to add
+        return new Date(c.getTimeInMillis());
+    }
     @Override
     public int getView() {
         return R.layout.activity_summary_score;

@@ -14,4 +14,8 @@
     <string name="your_score">คะแนนของคุณคือ %1$d คะแนน</string>
     <string name="start_text">จะเริ่มจับเวลา หลักจากกดปุ่ม "OK" เพื่อเริ่มต้นทำข้อสอบ</string>
     <string name="start">เริ่มแบบทดสอบ</string>
+    <string name="pre">ก่อนเรียน</string>
+    <string name="post">หลังเรียน</string>
+    <string name="score">คะแนน</string>
+    <string name="date">วันที่</string>
 </resources>

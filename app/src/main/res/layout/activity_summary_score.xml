@@ -7,8 +7,100 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <com.jjoe64.graphview.GraphView
+    <LinearLayout
+        android:padding="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <drivingtest.project.com.base.view.MyTextView
+            android:id="@+id/tvCatName"
+            style="@style/AppText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="drivingtest.project.com.base.view.MyTextView"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_gravity="center"
+            android:id="@+id/viewDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp">
+
+                <FrameLayout
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@color/appOrange">
+
+                </FrameLayout>
+
+                <drivingtest.project.com.base.view.MyTextView
+                    android:id="@+id/tvG1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"
+                    android:text="@string/pre" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="20dp"
+                    android:background="@color/colorAccent"
+                    android:layout_height="20dp">
+
+                </FrameLayout>
+
+                <drivingtest.project.com.base.view.MyTextView
+                    android:id="@+id/tvG2"
+                    android:paddingLeft="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/post" />
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+    <drivingtest.project.com.base.view.MyTextView
+        android:id="@+id/myTextView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/score" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/graph" />
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graph"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <drivingtest.project.com.base.view.MyTextView
+            android:id="@+id/myTextView3"
+            android:layout_gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date" />
+    </LinearLayout>
 </LinearLayout>
