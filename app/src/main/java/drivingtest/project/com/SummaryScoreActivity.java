@@ -2,7 +2,11 @@ package drivingtest.project.com;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.widget.NestedScrollView;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.jjoe64.graphview.GraphView;
@@ -36,6 +40,7 @@ public class SummaryScoreActivity extends BaseActivity{
     private MyTextView tvCatName;
     private View viewDetail;
     private ListView lv;
+    private NestedScrollView nestedScrollView;
 
     @Override
     public void iniView() {
@@ -48,6 +53,23 @@ public class SummaryScoreActivity extends BaseActivity{
         graph = (GraphView) findViewById(R.id.graph);
         viewDetail = findViewById(R.id.viewDetail);
         lv = (ListView)findViewById(R.id.itemlv);
+        nestedScrollView = (NestedScrollView) findViewById(R.id.nestedScrollView);
+        nestedScrollView.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                findViewById(R.id.itemlv).getParent()
+                        .requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        });
+
+        lv.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
         if(cat_id >5){
             viewDetail.setVisibility(View.GONE);
         }
@@ -100,6 +122,10 @@ public class SummaryScoreActivity extends BaseActivity{
         graph.getGridLabelRenderer().setHumanRounding(true);
 
         ScoreAdapter scoreAdapter = new ScoreAdapter(this,0,scores,cat_id);
+        LayoutInflater inflater = getLayoutInflater();
+
+        ViewGroup header = (ViewGroup)inflater.inflate(R.layout.header_table_score_layout, lv, false);
+        lv.addHeaderView(header, null, false);
         lv.setAdapter(scoreAdapter);
     }
 

@@ -78,9 +78,9 @@
     </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:fillViewport="true"
-        android:scrollbars="none"
         android:layout_height="match_parent">
 
         <LinearLayout
@@ -115,9 +115,10 @@
                     android:paddingRight="5dp"
                     android:text="@string/date" />
             </LinearLayout>
-            <include layout="@layout/header_table_score_layout"></include>
             <ListView
                 android:id="@+id/itemlv"
+                android:scrollbars="vertical"
+                android:clipToPadding="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
