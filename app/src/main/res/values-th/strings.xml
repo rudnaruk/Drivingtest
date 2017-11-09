@@ -21,4 +21,8 @@
     <string name="posttest">แบบทดสอบหลังการเรียนรู้</string>
     <string name="guidelines">แนวข้อสอบใบอนุญาตขับขี่</string>
     <string name="test">แบบทดสอบรวมข้อมูลความรู้</string>
+    <string name="type">ประเภท</string>
+    <string name="score_label">คะแนน</string>
+    <string name="dates">วันที่</string>
+    <string name="no">ลำดับที่</string>
 </resources>

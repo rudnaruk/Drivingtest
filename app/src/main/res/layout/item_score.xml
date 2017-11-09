@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <drivingtest.project.com.base.view.MyTextView
+        android:id="@+id/tvNo"
+        style="@style/AppText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:text="1"
+        android:textStyle="bold" />
+
+    <drivingtest.project.com.base.view.MyTextView
+        android:id="@+id/tvDate"
+        style="@style/AppText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:text="11/12/2017 12:43"
+        android:textStyle="bold" />
+
+    <drivingtest.project.com.base.view.MyTextView
+        android:id="@+id/tvType"
+        style="@style/AppText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:text="@string/post"
+        android:textStyle="bold" />
+
+    <drivingtest.project.com.base.view.MyTextView
+        android:id="@+id/tvScore"
+        style="@style/AppText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:text="1"
+        android:textStyle="bold" />
+</LinearLayout>

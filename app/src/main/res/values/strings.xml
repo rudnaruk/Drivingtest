@@ -39,4 +39,9 @@
     <string name="result_cat3" translatable="false">ผลการทดสอบเรื่อง การใช้ถนนอย่างปลอดภัย</string>
     <string name="result_cat4" translatable="false">ผลการทดสอบเรื่อง วิธีปฏิบัติในการใช้รถ</string>
     <string name="result_cat5" translatable="false">ผลการทดสอบเรื่อง หมายเลขสายด่วน</string>
+
+    <string name="type">Type</string>
+    <string name="score_label">Score</string>
+    <string name="dates">Date</string>
+    <string name="no">No.</string>
 </resources>

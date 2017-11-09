@@ -3,6 +3,7 @@ package drivingtest.project.com;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
+import android.widget.ListView;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
@@ -20,6 +21,7 @@ import drivingtest.project.com.base.view.MyTextView;
 import drivingtest.project.com.database.MyDatabase;
 import drivingtest.project.com.model.Category;
 import drivingtest.project.com.model.Score;
+import drivingtest.project.com.view.ScoreAdapter;
 
 /**
  * Created by piyaponf on 11/7/2017 AD.
@@ -33,6 +35,7 @@ public class SummaryScoreActivity extends BaseActivity{
     private GraphView graph;
     private MyTextView tvCatName;
     private View viewDetail;
+    private ListView lv;
 
     @Override
     public void iniView() {
@@ -44,7 +47,7 @@ public class SummaryScoreActivity extends BaseActivity{
         scores = (ArrayList<Score>) myDatabase.getScoreByCategoryId(cat_id);
         graph = (GraphView) findViewById(R.id.graph);
         viewDetail = findViewById(R.id.viewDetail);
-
+        lv = (ListView)findViewById(R.id.itemlv);
         if(cat_id >5){
             viewDetail.setVisibility(View.GONE);
         }
@@ -95,6 +98,9 @@ public class SummaryScoreActivity extends BaseActivity{
 // as we use dates as labels, the human rounding to nice readable numbers
 // is not necessary
         graph.getGridLabelRenderer().setHumanRounding(true);
+
+        ScoreAdapter scoreAdapter = new ScoreAdapter(this,0,scores,cat_id);
+        lv.setAdapter(scoreAdapter);
     }
 
     //get mode and category id from intent
