@@ -215,7 +215,7 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
             if(catID == 8){
                 return myDatabase.getAllQuestion();
             }
-            return myDatabase.getQuestionByCategoryId(catID);
+            return myDatabase.getQuestionByCategoryId(catID,MAX_COUNT);
         }
 
         @Override

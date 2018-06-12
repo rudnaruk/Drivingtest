@@ -78,7 +78,16 @@ public class MyDatabase {
     public List<Question> getAllQuestion(){
         SQLiteDatabase db = databaseHandler.openDatabase();
         List<Question> questions = new ArrayList<>();
-        String query = String.format("SELECT * FROM %s ORDER BY RANDOM() LIMIT 0,50",TABLE_QUESTIONS);
+
+        String query = "SELECT * FROM(\n" +
+                "SELECT * FROM (SELECT * FROM QUESTIONS WHERE c_id=1 ORDER BY RANDOM() LIMIT 0,10)\n" +
+                "UNION SELECT * FROM (SELECT * FROM QUESTIONS WHERE c_id=2 ORDER BY RANDOM() LIMIT 0,10)\n" +
+                "UNION SELECT * FROM (SELECT * FROM QUESTIONS WHERE c_id=3 ORDER BY RANDOM() LIMIT 0,10)\n" +
+                "UNION SELECT * FROM (SELECT * FROM QUESTIONS WHERE c_id=4 ORDER BY RANDOM() LIMIT 0,10)\n" +
+                "UNION SELECT * FROM (SELECT * FROM QUESTIONS WHERE c_id=5 ORDER BY RANDOM() LIMIT 0,10)\n" +
+                "UNION SELECT * FROM (SELECT * FROM QUESTIONS WHERE c_id=6 ORDER BY RANDOM() LIMIT 0,10)\n" +
+                "UNION SELECT * FROM (SELECT * FROM QUESTIONS WHERE c_id=7 ORDER BY RANDOM() LIMIT 0,10)\n" +
+                ")ORDER BY RANDOM()";
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
             do {
@@ -99,10 +108,10 @@ public class MyDatabase {
      * @param cid is category id
      * @return list of question
      */
-    public List<Question> getQuestionByCategoryId(int cid){
+    public List<Question> getQuestionByCategoryId(int cid,int max){
         SQLiteDatabase db = databaseHandler.openDatabase();
         List<Question> questions = new ArrayList<>();
-        String query = String.format("SELECT * FROM %s WHERE c_id=%d",TABLE_QUESTIONS,cid);
+        String query = String.format("SELECT * FROM %s WHERE c_id=%d ORDER BY RANDOM() LIMIT 0,%d",TABLE_QUESTIONS,cid,max);
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
             do {

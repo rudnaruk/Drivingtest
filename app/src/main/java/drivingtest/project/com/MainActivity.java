@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public void goTesting(View view) {
         int i = view.getId();
         if(i == R.id.button) {
-
+            //ghgjgj
         }else if(i == R.id.button1){
             Intent intent = new Intent(this, TestingMenuActivity.class);
             startActivity(intent);
