@@ -12,7 +12,8 @@
     <string name="choice_b">B.</string>
     <string name="choice_c">C.</string>
     <string name="choice_d">D.</string>
-    <string name="your_score">Your score is %1$d.</string>
+    <string name="your_score">Your score is %1$d. Sorry! You fail the exams!</string>
+    <string name="your_score_pass">Your score is %1$d. Congratulations! You\'ve run the course and passed the exams!</string>
     <string name="score">Score</string>
     <string name="date">Times</string>
     <string name="start">Start Testing</string>

@@ -201,7 +201,11 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
                 finish();
             }
         });
-        myDialog.showDialog(this,"Test Result",getString(R.string.your_score,calculateScore()));
+        if(isPass()) {
+            myDialog.showDialog(this, "Test Result", getString(R.string.your_score_pass, calculateScore()));
+        }else{
+            myDialog.showDialog(this, "Test Result", getString(R.string.your_score, calculateScore()));
+        }
     }
 
     /**
@@ -256,6 +260,19 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
             }
         }
         return i;
+    }
+    private boolean isPass(){
+        int i = 0;
+        for(Question question: questions){
+            for(Choice choice : question.getChoices()){
+                if(choice.isFlag() && choice.isChecked()){
+                    i++;
+                }
+            }
+        }
+        int total = questions.size()+1;
+        int p = i*100/total;
+        return p>=90;
     }
 
     private void saveScore(){

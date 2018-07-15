@@ -49,9 +49,12 @@ public class TestingAdapter extends RecyclerView.Adapter<TestingAdapter.TestingV
         question.setPosition(position);
         holder.tvQuestion.setText(String.format("%d. %s",(position+1),question.getQuestion()));
         if(question.getImage()!=null) {
+            holder.ivQuestion.setVisibility(View.VISIBLE);
             Glide.with(context)
                     .load(Uri.parse("file:///android_asset" + question.getImage())) // Uri of the picture
                     .into(holder.ivQuestion);
+        }else{
+            holder.ivQuestion.setVisibility(View.GONE);
         }
         if(question.getChoices().size() == 0){
             LoadChoiceTask task =new LoadChoiceTask();
@@ -170,8 +173,10 @@ public class TestingAdapter extends RecyclerView.Adapter<TestingAdapter.TestingV
 
         @Override
         protected void onPostExecute(List<Choice> choices) {
-            mQuestion.getChoices().addAll(choices);
-            TestingAdapter.this.notifyItemChanged(mQuestion.getPosition());
+            if(!choices.isEmpty()) {
+                mQuestion.getChoices().addAll(choices);
+                TestingAdapter.this.notifyItemChanged(mQuestion.getPosition());
+            }
         }
     }
     public interface OnDoQuestionListener{
