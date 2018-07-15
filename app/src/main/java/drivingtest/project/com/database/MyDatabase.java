@@ -75,7 +75,7 @@ public class MyDatabase {
      * get all question
      * @return list of question
      */
-    public List<Question> getAllQuestion(){
+    public List<Question> getAllQuestion(int count){
         SQLiteDatabase db = databaseHandler.openDatabase();
         List<Question> questions = new ArrayList<>();
 
@@ -87,7 +87,8 @@ public class MyDatabase {
                 "UNION SELECT * FROM (SELECT * FROM QUESTIONS WHERE c_id=5 ORDER BY RANDOM() LIMIT 0,10)\n" +
                 "UNION SELECT * FROM (SELECT * FROM QUESTIONS WHERE c_id=6 ORDER BY RANDOM() LIMIT 0,10)\n" +
                 "UNION SELECT * FROM (SELECT * FROM QUESTIONS WHERE c_id=7 ORDER BY RANDOM() LIMIT 0,10)\n" +
-                ")ORDER BY RANDOM()";
+                ")ORDER BY RANDOM()\n"+
+                "LIMIT 0,"+count;
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
             do {

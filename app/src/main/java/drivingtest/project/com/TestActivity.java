@@ -23,7 +23,7 @@ import drivingtest.project.com.view.TestingAdapter;
 
 public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQuestionListener {
     private String TAG = "drivingtest.project.com";
-    private final int MAX_COUNT = 50;
+    private final int MAX_COUNT = 20;
 
     //default cat_id is 1
     private int cat_id = 1;
@@ -217,7 +217,11 @@ public class TestActivity extends BaseActivity implements TestingAdapter.OnDoQue
             MyDatabase myDatabase = new MyDatabase(getApplicationContext());
             int catID= integers[0];
             if(catID == 8){
-                return myDatabase.getAllQuestion();
+                if(selectedMode == MODE_TIME_COUNTER) {
+                    return myDatabase.getAllQuestion(50);
+                }else{
+                    return myDatabase.getAllQuestion(30);
+                }
             }
             return myDatabase.getQuestionByCategoryId(catID,MAX_COUNT);
         }
